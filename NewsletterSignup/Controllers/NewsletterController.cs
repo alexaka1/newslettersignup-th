@@ -1,5 +1,6 @@
 ﻿using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc;
+using NewsletterSignup.Newsletter;
 
 namespace NewsletterSignup.Controllers;
 
@@ -7,10 +8,9 @@ namespace NewsletterSignup.Controllers;
 [Route("api/[controller]")]
 public class NewsletterController: ControllerBase
 {
-    [HttpGet("test")]
-    [Produces(MediaTypeNames.Text.Plain)]
-    public IActionResult Test()
+    [HttpPost("signup")]
+    public IActionResult SignUp(NewsletterSignupDto signup)
     {
-        return new JsonResult(new {text = "Testing"});
+        return Ok();
     }
 }

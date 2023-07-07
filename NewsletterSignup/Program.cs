@@ -1,11 +1,39 @@
+using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NewsletterSignup.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
-
+var env = builder.Environment;
+var config = builder.Configuration;
 // Add services to the container.
-
-builder.Services.AddControllersWithViews();
-
+var services = builder.Services;
+services.AddDbContext<ApplicationContext>(options =>
+{
+    options.UseSqlServer(config.GetConnectionString("Context"), b =>
+    {
+        b.CommandTimeout(60);
+    });
+    if (env.IsDevelopment())
+    {
+        options.EnableDetailedErrors();
+        options.EnableSensitiveDataLogging();
+    }
+});
+services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+        new BadRequestObjectResult(context.ModelState)
+        {
+            ContentTypes =
+            {
+                MediaTypeNames.Application.Json
+            }
+        };
+});
+builder.Services.AddProblemDetails();
 var app = builder.Build();
-
+app.UseExceptionHandler();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

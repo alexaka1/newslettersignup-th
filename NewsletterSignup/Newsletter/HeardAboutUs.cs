@@ -1,0 +1,8 @@
+﻿namespace NewsletterSignup.Newsletter;
+
+public enum HeardAboutUs
+{
+    Other = 0,
+    Advert,
+    WordOfMouth
+}
