@@ -3,6 +3,6 @@
 public enum HeardAboutUs
 {
     Other = 0,
-    Advert,
-    WordOfMouth,
+    Advert = 1,
+    WordOfMouth = 2,
 }

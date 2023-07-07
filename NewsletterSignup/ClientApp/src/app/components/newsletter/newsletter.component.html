@@ -1,1 +1,17 @@
-<p>newsletter works!</p>
+<form [formGroup]="fg" (submit)="submit()">
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="Your email" />
+    <mat-error *ngIf="fg.controls.email.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="fg.controls.email.hasError('email')">The email address is invalid</mat-error>
+  </mat-form-field>
+  <mat-radio-group #heardAboutUs formControlName="heardAboutUs" aria-label="Select how you heard about us.">
+    <mat-radio-button [value]="HeardAboutUs.Advert">Advert</mat-radio-button>
+    <mat-radio-button [value]="HeardAboutUs.WordOfMouth">Word of Mouth</mat-radio-button>
+    <mat-radio-button [value]="HeardAboutUs.Other">Other</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field *ngIf="fg.controls.heardAboutUs.value === HeardAboutUs.Other">
+    <textarea matInput formControlName="other" placeholder="Please specify..."></textarea>
+  </mat-form-field>
+  <!--  [disabled]="fg.invalid" -->
+  <button type="submit" mat-raised-button color="primary">Sign up</button>
+</form>

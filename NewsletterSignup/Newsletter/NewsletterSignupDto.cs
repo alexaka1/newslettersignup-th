@@ -21,10 +21,9 @@ public class NewsletterSignupDto : IValidatableObject
 
         //  RFC 5322 and 5321 allow some crazy email addresses, so syntax validation besides @ character is not a good idea
         // email can actually contain more than one @
-        if (at is > 0 && (at.Value != Email?.Length - 1) /*&& at.Value == Email.LastIndexOf('@')*/
-           )
+        if (at is not > 0 || !(at.Value < Email?.Length - 1))
         {
-            yield return new ValidationResult("Email address cannot start with @", new[] { nameof(Email) });
+            yield return new ValidationResult("Email is invalid", new[] { nameof(Email) });
         }
     }
 }
