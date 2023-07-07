@@ -13,5 +13,5 @@
     <textarea matInput formControlName="other" placeholder="Please specify..."></textarea>
   </mat-form-field>
   <!--  [disabled]="fg.invalid" -->
-  <button type="submit" mat-raised-button color="primary">Sign up</button>
+  <button type="submit" mat-raised-button color="primary" [disabled]="fg.invalid">Sign up</button>
 </form>
