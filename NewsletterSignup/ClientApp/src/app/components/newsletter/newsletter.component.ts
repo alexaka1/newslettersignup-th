@@ -23,6 +23,9 @@ const emailValidation: ValidatorFn = (control: AbstractControl<unknown | null | 
   return null;
 };
 
+const maxOther = 500;
+const maxEmail = 450;
+
 @Component({
   templateUrl: './newsletter.component.html',
   styleUrls: ['./newsletter.component.scss'],
@@ -31,13 +34,16 @@ export class NewsletterComponent {
   fg = new FormGroup({
     email: new FormControl<string | undefined>(undefined, [
       Validators.required,
-      Validators.maxLength(450) /*, Validators.email*/,
+      Validators.maxLength(maxEmail) /*, Validators.email*/,
       emailValidation,
     ]),
-    other: new FormControl<string | undefined>(undefined, [Validators.maxLength(500)]),
+    other: new FormControl<string | undefined>(undefined, [Validators.maxLength(maxOther)]),
     heardAboutUs: new FormControl<HeardAboutUs | undefined>(HeardAboutUs.Advert, [Validators.required]),
+    reason: new FormControl<string | undefined>(undefined, [Validators.required, Validators.maxLength(maxOther)]),
   });
   protected readonly HeardAboutUs = HeardAboutUs;
+  protected readonly maxOther = maxOther;
+  protected readonly maxEmail = maxEmail;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
 

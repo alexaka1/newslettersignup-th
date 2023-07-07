@@ -25,6 +25,7 @@ dotnet ef database update -p NewsletterSignup
             b.HasIndex(x => x.Email).IsUnique();
             b.Property(x => x.HeardAboutUs).HasConversion<string>();
             b.Property(x => x.Other).HasMaxLength(500);
+            b.Property(x => x.Reason).HasMaxLength(500);
         });
     }
 }

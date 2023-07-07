@@ -6,4 +6,5 @@ public class NewsletterSignup
     public string Email { get; set; } = string.Empty;
     public HeardAboutUs HeardAboutUs { get; set; }
     public string? Other { get; set; }
+    public string Reason { get; set; } = string.Empty;
 }
