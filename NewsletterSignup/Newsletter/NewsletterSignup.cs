@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace NewsletterSignup.Newsletter;
+﻿namespace NewsletterSignup.Newsletter;
 
 public class NewsletterSignup
 {

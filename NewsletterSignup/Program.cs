@@ -3,17 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsletterSignup.DataAccess;
 
-var builder = WebApplication.CreateBuilder(args);
-var env = builder.Environment;
-var config = builder.Configuration;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+IWebHostEnvironment env = builder.Environment;
+ConfigurationManager config = builder.Configuration;
+
 // Add services to the container.
-var services = builder.Services;
+IServiceCollection services = builder.Services;
 services.AddDbContext<ApplicationContext>(options =>
 {
-    options.UseSqlServer(config.GetConnectionString("Context"), b =>
-    {
-        b.CommandTimeout(60);
-    });
+    options.UseSqlServer(config.GetConnectionString("Context"), b => { b.CommandTimeout(60); });
     if (env.IsDevelopment())
     {
         options.EnableDetailedErrors();
@@ -27,13 +25,14 @@ services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
         {
             ContentTypes =
             {
-                MediaTypeNames.Application.Json
-            }
+                MediaTypeNames.Application.Json,
+            },
         };
 });
 builder.Services.AddProblemDetails();
-var app = builder.Build();
+WebApplication app = builder.Build();
 app.UseExceptionHandler();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -47,8 +46,8 @@ app.UseRouting();
 
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    "default",
+    "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
 

@@ -4,5 +4,5 @@ public enum HeardAboutUs
 {
     Other = 0,
     Advert,
-    WordOfMouth
+    WordOfMouth,
 }

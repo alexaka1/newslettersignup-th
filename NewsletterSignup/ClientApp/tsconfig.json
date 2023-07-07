@@ -112,7 +112,8 @@
     /* Default catch clause variables as 'unknown' instead of 'any'. */
     "alwaysStrict": true,
     /* Ensure 'use strict' is always emitted. */
-    "noUnusedLocals": false, // ez jó lenne, de az unused importokra is error-t ad, arra viszont csak warning-ot szeretnénk eslint-el
+    "noUnusedLocals": false,
+    // ez jó lenne, de az unused importokra is error-t ad, arra viszont csak warning-ot szeretnénk eslint-el
     /* Enable error reporting when local variables aren't read. */
     "noUnusedParameters": true,
     /* Raise an error when a function parameter isn't read. */

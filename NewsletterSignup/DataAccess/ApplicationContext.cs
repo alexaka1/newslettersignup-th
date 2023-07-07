@@ -4,16 +4,15 @@ namespace NewsletterSignup.DataAccess;
 
 public class ApplicationContext : DbContext
 {
+    public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+    {
+    }
+
 /*
 dotnet ef migrations add Initial -p NewsletterSignup
 dotnet ef database update -p NewsletterSignup
 */
     public DbSet<Newsletter.NewsletterSignup> NewsletterSignups => Set<Newsletter.NewsletterSignup>();
-
-
-    public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
-    {
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
