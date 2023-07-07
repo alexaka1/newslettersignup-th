@@ -18,7 +18,6 @@
         "eslint:recommended",
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
-        //"plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:import/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
@@ -43,8 +42,7 @@
         ],
         "prettier/prettier": [
           "error",
-          {
-          }
+          {}
         ],
         "eqeqeq": [
           "error",
@@ -87,7 +85,6 @@
         "no-implied-eval": "error",
         "no-floating-decimal": "error",
         "no-implicit-coercion": "error",
-        // todo: waring
         "no-magic-numbers": "off",
         "no-multi-assign": "error",
         "no-multi-str": "warn",
@@ -112,7 +109,6 @@
         "no-useless-call": "error",
         "no-useless-concat": "warn",
         "no-var": "error",
-        // @typescript-eslint/eslint-plugin, the ways this linter works is you have to disable the corresponding eslint rules to avoid conflicting fixes, ie: no-shadow off, but ts/no-shadow error
         "@typescript-eslint/ban-tslint-comment": "error",
         "@typescript-eslint/no-duplicate-enum-values": "error",
         "@typescript-eslint/no-duplicate-type-constituents": "error",
@@ -130,7 +126,6 @@
         "@typescript-eslint/no-shadow": [
           "error"
         ],
-        // import
         "import/no-unresolved": "off"
       }
     },
