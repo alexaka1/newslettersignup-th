@@ -51,7 +51,13 @@ export class NewsletterComponent {
   submit() {
     this.http.post(this.baseUrl + API, this.fg.value).subscribe({
       next: () => {
-        this._snackBar.open('Thank you for signing up!');
+        this._snackBar.open('Thank you for signing up!', undefined, {
+          duration: 5000,
+        });
+        this.fg.reset();
+        this.fg.markAsPristine();
+        this.fg.markAsUntouched();
+        this.fg.updateValueAndValidity();
       },
       error: (e) => {
         let errorMessage =
@@ -74,7 +80,12 @@ export class NewsletterComponent {
             errorMessage = error[0];
           }
         }
-        this._snackBar.open(errorMessage);
+        this.fg.controls.email.setErrors({
+          error: errorMessage,
+        });
+        this._snackBar.open(errorMessage, undefined, {
+          duration: 5000,
+        });
       },
     });
   }

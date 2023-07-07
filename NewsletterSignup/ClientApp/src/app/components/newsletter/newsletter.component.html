@@ -13,6 +13,7 @@
           <mat-error *ngIf="fg.controls.email.hasError('maxlength')"
             >The email address is longer than {{ maxEmail }} characters
           </mat-error>
+          <mat-error *ngIf="fg.controls.email.hasError('error')">{{ fg.controls.email.getError("error") }}</mat-error>
         </mat-form-field>
         <label for="heard-about-us">How have you heard about us?</label>
         <mat-radio-group
@@ -38,6 +39,7 @@
           <mat-hint *ngIf="(fg.controls.reason.value?.length ?? 0) > 200"
             >{{ fg.controls.reason.value?.length }}/{{ maxOther }}</mat-hint
           >
+          <mat-error *ngIf="fg.controls.reason.hasError('required')">Please provide a reason for signing up</mat-error>
         </mat-form-field>
         <!--  [disabled]="fg.invalid" -->
       </div>
