@@ -7,9 +7,10 @@
         <IsPackable>false</IsPackable>
         <SpaRoot>ClientApp\</SpaRoot>
         <SpaProxyServerUrl>https://localhost:44435</SpaProxyServerUrl>
-        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+<!--        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>-->
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+        <UserSecretsId>6b482dec-b310-468d-abc6-dc799ff4f13b</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
