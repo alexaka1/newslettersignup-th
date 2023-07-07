@@ -1,0 +1,16 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$NewsletterSignup-primary: mat.define-palette(mat.$light-blue-palette, A700);
+$NewsletterSignup-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$NewsletterSignup-warn: mat.define-palette(mat.$red-palette);
+
+$primaryC: mat.get-color-from-palette($NewsletterSignup-primary);
+$secondaryC: mat.get-color-from-palette($NewsletterSignup-accent);
+$dangerC: mat.get-color-from-palette($NewsletterSignup-warn);

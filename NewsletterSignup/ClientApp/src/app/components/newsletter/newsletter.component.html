@@ -1,32 +1,49 @@
 <form [formGroup]="fg" (submit)="submit()">
-  <mat-form-field>
-    <mat-label>Email address</mat-label>
-    <input matInput formControlName="email" placeholder="Your email" [maxlength]="maxEmail" />
-    <mat-error *ngIf="fg.controls.email.hasError('required')">Email is required</mat-error>
-    <mat-error *ngIf="fg.controls.email.hasError('email')">The email address is invalid</mat-error>
-    <mat-error *ngIf="fg.controls.email.hasError('maxlength')"
-      >The email address is longer than {{ maxEmail }} characters
-    </mat-error>
-  </mat-form-field>
-  <mat-radio-group #heardAboutUs formControlName="heardAboutUs" aria-label="Select how you heard about us.">
-    <mat-radio-button [value]="HeardAboutUs.Advert">Advert</mat-radio-button>
-    <mat-radio-button [value]="HeardAboutUs.WordOfMouth">Word of Mouth</mat-radio-button>
-    <mat-radio-button [value]="HeardAboutUs.Other">Other</mat-radio-button>
-  </mat-radio-group>
-  <mat-form-field *ngIf="fg.controls.heardAboutUs.value === HeardAboutUs.Other">
-    <mat-label>Other</mat-label>
-    <textarea matInput formControlName="other" placeholder="Please specify..." [maxlength]="maxOther"></textarea>
-    <mat-hint *ngIf="(fg.controls.other.value?.length ?? 0) > 200"
-      >{{ fg.controls.other.value?.length }}/{{ maxOther }}</mat-hint
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>The reason for signing up:</mat-label>
-    <textarea matInput formControlName="reason" placeholder="Please specify..." [maxlength]="maxOther"></textarea>
-    <mat-hint *ngIf="(fg.controls.reason.value?.length ?? 0) > 200"
-      >{{ fg.controls.reason.value?.length }}/{{ maxOther }}</mat-hint
-    >
-  </mat-form-field>
-  <!--  [disabled]="fg.invalid" -->
-  <button type="submit" mat-raised-button color="primary" [disabled]="fg.invalid && false">Sign up</button>
+  <mat-card class="center form">
+    <mat-card-header style="margin: 1rem">
+      <mat-card-title class="title">Sign up to our Newsletter...</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="submission">
+        <mat-form-field>
+          <mat-label>Email address</mat-label>
+          <input matInput formControlName="email" placeholder="Your email" [maxlength]="maxEmail" />
+          <mat-error *ngIf="fg.controls.email.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="fg.controls.email.hasError('email')">The email address is invalid</mat-error>
+          <mat-error *ngIf="fg.controls.email.hasError('maxlength')"
+            >The email address is longer than {{ maxEmail }} characters
+          </mat-error>
+        </mat-form-field>
+        <label for="heard-about-us">How have you heard about us?</label>
+        <mat-radio-group
+          id="heard-about-us"
+          class="heard-about-us"
+          formControlName="heardAboutUs"
+          aria-label="Select how you heard about us."
+        >
+          <mat-radio-button [value]="HeardAboutUs.Advert">Advert</mat-radio-button>
+          <mat-radio-button [value]="HeardAboutUs.WordOfMouth">Word of Mouth</mat-radio-button>
+          <mat-radio-button [value]="HeardAboutUs.Other">Other</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field *ngIf="fg.controls.heardAboutUs.value === HeardAboutUs.Other">
+          <mat-label>Other</mat-label>
+          <textarea matInput formControlName="other" placeholder="Please specify..." [maxlength]="maxOther"></textarea>
+          <mat-hint *ngIf="(fg.controls.other.value?.length ?? 0) > 200"
+            >{{ fg.controls.other.value?.length }}/{{ maxOther }}</mat-hint
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>The reason for signing up</mat-label>
+          <textarea matInput formControlName="reason" placeholder="Please specify..." [maxlength]="maxOther"></textarea>
+          <mat-hint *ngIf="(fg.controls.reason.value?.length ?? 0) > 200"
+            >{{ fg.controls.reason.value?.length }}/{{ maxOther }}</mat-hint
+          >
+        </mat-form-field>
+        <!--  [disabled]="fg.invalid" -->
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button type="submit" mat-raised-button color="primary" [disabled]="fg.invalid">Sign up</button>
+    </mat-card-actions>
+  </mat-card>
 </form>
