@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HeardAboutUs } from '../../core/heard-about-us';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const API = 'api/newsletter/signup';
 const emailValidation: ValidatorFn = (control: AbstractControl<unknown | null | undefined>) => {
@@ -45,14 +46,16 @@ export class NewsletterComponent {
   protected readonly maxOther = maxOther;
   protected readonly maxEmail = maxEmail;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private _snackBar: MatSnackBar) {}
 
   submit() {
     this.http.post(this.baseUrl + API, this.fg.value).subscribe({
       next: () => {
-        alert('Thank you for signing up!');
+        this._snackBar.open('Thank you for signing up!');
       },
       error: (e) => {
+        let errorMessage =
+          'There was an error with your submission. We apologize for any inconveniences, please try again later!';
         // not my proudest work :)
         const err = e?.error;
         if (
@@ -65,15 +68,13 @@ export class NewsletterComponent {
         ) {
           const error = err.errors[Object.keys(err.errors)[0]] as unknown;
           if (typeof error === 'string') {
-            alert(error);
-            return;
+            errorMessage = error;
           }
           if (Array.isArray(error) && error.length > 0 && typeof error[0] === 'string') {
-            alert(error[0]);
-            return;
+            errorMessage = error[0];
           }
         }
-        alert('There was an error with your submission. We apologize for any inconveniences, please try again later!');
+        this._snackBar.open(errorMessage);
       },
     });
   }

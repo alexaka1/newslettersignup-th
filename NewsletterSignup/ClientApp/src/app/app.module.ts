@@ -14,7 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [AppComponent, NewsletterComponent],
   imports: [
@@ -31,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatRadioModule,
     TextFieldModule,
     MatCardModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
