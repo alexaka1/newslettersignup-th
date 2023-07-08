@@ -79,10 +79,10 @@ export class NewsletterComponent {
           if (Array.isArray(error) && error.length > 0 && typeof error[0] === 'string') {
             errorMessage = error[0];
           }
+          this.fg.controls.email.setErrors({
+            error: errorMessage,
+          });
         }
-        this.fg.controls.email.setErrors({
-          error: errorMessage,
-        });
         this._snackBar.open(errorMessage, undefined, {
           duration: 5000,
         });

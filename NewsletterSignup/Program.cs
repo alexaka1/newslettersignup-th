@@ -71,10 +71,16 @@ app.MapControllerRoute(
     "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
-using (IServiceScope serviceScope = app.Services.CreateScope())
+try
 {
-    await using var db = serviceScope.ServiceProvider.GetRequiredService<ApplicationContext>();
-    await db.Database.MigrateAsync();
+    using IServiceScope serviceScope = app.Services.CreateScope();
+    var db = serviceScope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    db.Database.Migrate();
+}
+catch (Exception e)
+{
+    // for some reason this throws an exception in docker, thus no database is created
+    Console.WriteLine(e);
 }
 
 app.Run();
