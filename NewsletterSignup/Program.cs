@@ -14,7 +14,7 @@ ConfigurationManager config = builder.Configuration;
 IServiceCollection services = builder.Services;
 services.AddDbContext<ApplicationContext>(options =>
 {
-    options.UseSqlServer(config.GetConnectionString("Context"), b => { b.CommandTimeout(60); });
+    options.UseSqlite(config.GetConnectionString("Context"), b => { b.CommandTimeout(60); });
     if (env.IsDevelopment())
     {
         options.EnableDetailedErrors();
@@ -71,5 +71,10 @@ app.MapControllerRoute(
     "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
+using (IServiceScope serviceScope = app.Services.CreateScope())
+{
+    await using var db = serviceScope.ServiceProvider.GetRequiredService<ApplicationContext>();
+    await db.Database.MigrateAsync();
+}
 
 app.Run();

@@ -15,10 +15,11 @@ namespace NewsletterSignup.Migrations
                 name: "NewsletterSignup",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    HeardAboutUs = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Other = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    HeardAboutUs = table.Column<string>(type: "TEXT", nullable: false),
+                    Other = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true),
+                    Reason = table.Column<string>(type: "TEXT", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {

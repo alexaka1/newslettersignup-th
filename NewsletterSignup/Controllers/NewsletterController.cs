@@ -18,7 +18,7 @@ public class NewsletterController : ControllerBase
             HeardAboutUs = signup.HeardAboutUs.GetValueOrDefault(),
             Email = signup.Email ?? "",
             Other = signup.Other,
-            Reason = signup.Reason ?? "",
+            Reason = signup.Reason,
         };
         if (await db.NewsletterSignups.AnyAsync(x => x.Email == model.Email, cancellationToken))
         {

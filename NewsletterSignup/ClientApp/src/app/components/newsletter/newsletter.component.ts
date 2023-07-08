@@ -40,7 +40,7 @@ export class NewsletterComponent {
     ]),
     other: new FormControl<string | undefined>(undefined, [Validators.maxLength(maxOther)]),
     heardAboutUs: new FormControl<HeardAboutUs | undefined>(HeardAboutUs.Advert, [Validators.required]),
-    reason: new FormControl<string | undefined>(undefined, [Validators.required, Validators.maxLength(maxOther)]),
+    reason: new FormControl<string | undefined>(undefined, [Validators.maxLength(maxOther)]),
   });
   protected readonly HeardAboutUs = HeardAboutUs;
   protected readonly maxOther = maxOther;

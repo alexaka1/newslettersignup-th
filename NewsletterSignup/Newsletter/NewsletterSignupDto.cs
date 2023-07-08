@@ -15,7 +15,6 @@ public class NewsletterSignupDto : IValidatableObject
     [MaxLength(500)]
     public string? Other { get; set; }
     [MaxLength(500)]
-    [Required]
     public string? Reason { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
